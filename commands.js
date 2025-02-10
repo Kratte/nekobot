@@ -26,10 +26,31 @@ const NEKONSFW_COMMAND = {
   contexts: [0, 1, 2],
   nsfw: true,
 };
+const BUNNYGIRL_COMMAND = {
+  name: 'bunnygirl',
+  type: 1,
+  description: 'sends a bunnygirl',
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
 const CAT_COMMAND = {
   name: 'cat',
   type: 1,
   description: 'sends a cute Cat',
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+const CATBREED_COMMAND = {
+  name: 'catbreed',
+  type: 1,
+  description: 'sends a cute Cat',
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+const CAPY_COMMAND = {
+  name: 'capy',
+  type: 1,
+  description: 'sends cute capybara',
   integration_types: [0, 1],
   contexts: [0, 1, 2],
 };
@@ -55,6 +76,9 @@ const ALL_COMMANDS = [
   NEKO_COMMAND,
   NEKONSFW_COMMAND,
   CAT_COMMAND,
+  CATBREED_COMMAND,
+  BUNNYGIRL_COMMAND,
+  CAPY_COMMAND,
 ];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

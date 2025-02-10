@@ -4,7 +4,7 @@ import { InteractionType, InteractionResponseType } from 'discord-interactions';
 import {
   VerifyDiscordRequest,
   getServerLeaderboard,
-  createPlayerEmbed, createCatEmbed, createNekoEmbed,
+  createPlayerEmbed, createCatEmbed, createNekoEmbed, createCatAdvancedEmbed, createCapyEmbed,
 } from './utils.js';
 import {getFakeProfile, getSafeness, getWikiItem} from './game.js';
 import { NekosAPI } from 'nekosapi';
@@ -55,7 +55,6 @@ app.post('/interactions', async function (req, res) {
         return response.json();
       })
       .then(data => {
-        const imagesurl = data[0].url;
         const nekoEmbed = createNekoEmbed(data[0]);
         console.log(data);
         return res.send({
@@ -80,6 +79,31 @@ app.post('/interactions', async function (req, res) {
           .then(response => {
             if (!response.ok) {
               throw new Error('Network response was not ok ' + "https://api.nekosapi.com/v4/images/random?tags=kemonomimi&limit=1&rating=" + selectedItem.name);
+            }
+            return response.json();
+          })
+          .then(data => {
+            const nekoEmbed = createNekoEmbed(data[0]);
+            console.log(data);
+            return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                embeds: [nekoEmbed]
+              },
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      // Send a message into the channel where command was triggered from
+
+    }
+
+    if (name === 'bunnygirl') {
+      fetch("https://api.nekosapi.com/v4/images/random?tags=bunny_girl&limit=1&rating=safe")
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + "https://api.nekosapi.com/v4/images/random?tags=kemonomimi&limit=1&rating=safe");
             }
             return response.json();
           })
@@ -124,6 +148,55 @@ app.post('/interactions', async function (req, res) {
             console.error('Error:', error);
           });
   }
+    if (name === 'catbreed') {
+
+      fetch("https://api.thecatapi.com/v1/images/search?has_breeds=1&api_key="+process.env.CATAPI_KEY)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + "https://api.thecatapi.com/v1/images/search?api_key=");
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log("data");
+            console.log(data);
+            const catEmbed = createCatAdvancedEmbed(data[0]);
+            return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                embeds: [catEmbed]
+              },
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+    }
+
+    if (name === 'capy') {
+
+      fetch("https://api.capy.lol/v1/capybara?json=true")
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + "https://api.capy.lol/v1/capybara?json=true");
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log(data.data);
+            const CapyEmbed = createCapyEmbed(data.data);
+            console.log(CapyEmbed);
+            return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                embeds: [CapyEmbed]
+              },
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+    }
 
     // Send a message into the channel where command was triggered from
 

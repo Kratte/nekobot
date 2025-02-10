@@ -123,14 +123,64 @@ export function createCatEmbed(catdata) {
     color: 0x968b9f,
   };
 }
-
+export function createCatAdvancedEmbed(catdata) {
+  return {
+    type: 'Image',
+    title: catdata.breeds[0].name,
+    image: {
+      url: catdata.url,
+    },
+    fields: [
+      {
+        name: `Weight`,
+        value: catdata.breeds[0].weight.metric + " kg",
+        inline: true,
+      },
+      {
+        name: `Origin`,
+        value: catdata.breeds[0].origin + " "+ getFlagEmoji(catdata.breeds[0].country_code),
+        inline: true,
+      },
+      {
+        name: `Description`,
+        value: catdata.breeds[0].description,
+        inline: true,
+      },
+    ],
+    color: 0x968b9f,
+  };
+}
 export function createNekoEmbed(nekodata) {
   return {
     type: 'Image',
     image: {
       url: nekodata.url,
     },
-    title: 'Catgirl',
+    fields: [
+      {
+        name: `tags`,
+        value: nekodata.tags.join(', '),
+        inline: true,
+      },
+    ],
+    color: 0x968b9f,
+  };
+}
+
+function getFlagEmoji(countryCode) {
+  const codePoints = countryCode
+      .toUpperCase()
+      .split('')
+      .map(char =>  127397 + char.charCodeAt());
+  return String.fromCodePoint(...codePoints);
+}
+export function createCapyEmbed(capydata) {
+  return {
+    type: 'Image',
+    title: capydata.alt,
+    image: {
+      url: capydata.url,
+    },
     color: 0x968b9f,
   };
 }
