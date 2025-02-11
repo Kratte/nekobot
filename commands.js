@@ -24,12 +24,27 @@ const NEKONSFW_COMMAND = {
   ],
   integration_types: [0, 1],
   contexts: [0, 1, 2],
-  nsfw: true,
 };
 const BUNNYGIRL_COMMAND = {
   name: 'bunnygirl',
   type: 1,
   description: 'sends a bunnygirl',
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+const BUNNYGIRLNSFW_COMMAND = {
+  name: 'bunnygirlnsfw',
+  type: 1,
+  description: 'sends a NSFW bunnygirl',
+  options: [
+    {
+      type: 3,
+      name: 'level',
+      description: 'What level of NSFW should it be?',
+      choices: Safeness,
+      required: true,
+    },
+  ],
   integration_types: [0, 1],
   contexts: [0, 1, 2],
 };
@@ -79,6 +94,7 @@ const ALL_COMMANDS = [
   CATBREED_COMMAND,
   BUNNYGIRL_COMMAND,
   CAPY_COMMAND,
+  BUNNYGIRLNSFW_COMMAND,
 ];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

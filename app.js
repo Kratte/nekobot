@@ -123,6 +123,34 @@ app.post('/interactions', async function (req, res) {
       // Send a message into the channel where command was triggered from
 
     }
+
+    if (name === 'bunnygirlnsfw') {
+      const option = data.options[0];
+      const selectedItem = getSafeness(option.value);
+      fetch("https://api.nekosapi.com/v4/images/random?tags=bunny_girl&limit=1&rating="+ selectedItem.name)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok ' + "https://api.nekosapi.com/v4/images/random?tags=bunny_girl&limit=1&rating=" + selectedItem.name);
+            }
+            return response.json();
+          })
+          .then(data => {
+            const nekoEmbed = createNekoEmbed(data[0]);
+            console.log(data);
+            return res.send({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                embeds: [nekoEmbed]
+              },
+            });
+          })
+          .catch(error => {
+            console.error('Error:', error);
+          });
+      // Send a message into the channel where command was triggered from
+
+    }
+
     //Cat commad
     if (name === 'cat') {
 
