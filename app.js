@@ -240,6 +240,7 @@ app.post('/interactions', async function (req, res) {
               .then(data => {
                   const nekosEmbed = createNekosEmbed(data);
                   console.log(data);
+                  console.log(nekosEmbed);
                   return res.send({
                       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                       data: {
