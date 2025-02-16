@@ -174,11 +174,17 @@ export function createNekosEmbed(nekodata) {
       url: nekodata.results[0].url,
     },
     fields: [
-      {
+      nekodata.results[0].anime_name != null ?{
         name: `Anime Name`,
         value: nekodata.results[0].anime_name,
-        inline: true,
-      },
+        inline: false,
+      } : null,
+      nekodata.results[0].artist_name != null ?{
+        name: `Artist`,
+        value: nekodata.results[0].artist_name,
+        url: nekodata.results[0].artist_href,
+        inline: false,
+      } : null,
     ],
     color: 0x968b9f,
   };
