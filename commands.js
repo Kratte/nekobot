@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { fakeGameItems,Safeness } from './game.js';
+import {Safeness,NekosCategories,NekosCategories1,NekosCategories2 } from './game.js';
 import { InstallGlobalCommands } from './utils.js';
 // Wiki command for game lookup
 const NEKO_COMMAND = {
@@ -69,6 +69,39 @@ const CAPY_COMMAND = {
   integration_types: [0, 1],
   contexts: [0, 1, 2],
 };
+const NEKOS_COMMAND = {
+  name: 'nekos',
+  type: 1,
+  description: 'sends image from nekos api',
+  options: [
+    {
+      type: 3,
+      name: 'category',
+      description: 'from which category',
+      choices: NekosCategories1,
+      required: true,
+    },
+  ],
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+const NEKOS2_COMMAND = {
+  name: 'nekos2',
+  type: 1,
+  description: 'sends image from nekos api',
+  options: [
+    {
+      type: 3,
+      name: 'category',
+      description: 'from which category',
+      choices: NekosCategories2,
+      required: true,
+    },
+  ],
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
+};
+
 /*
 const WIKI_COMMAND = {
   name: 'wiki',
@@ -95,6 +128,8 @@ const ALL_COMMANDS = [
   BUNNYGIRL_COMMAND,
   CAPY_COMMAND,
   BUNNYGIRLNSFW_COMMAND,
+  NEKOS_COMMAND,
+  NEKOS2_COMMAND,
 ];
 
 InstallGlobalCommands(process.env.APP_ID, ALL_COMMANDS);

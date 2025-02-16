@@ -167,6 +167,23 @@ export function createNekoEmbed(nekodata) {
   };
 }
 
+export function createNekosEmbed(nekodata) {
+  return {
+    type: 'Image',
+    image: {
+      url: nekodata.results[0].url,
+    },
+    fields: [
+      {
+        name: `Anime Name`,
+        value: nekodata.results[0].anime_name,
+        inline: true,
+      },
+    ],
+    color: 0x968b9f,
+  };
+}
+
 function getFlagEmoji(countryCode) {
   const codePoints = countryCode
       .toUpperCase()

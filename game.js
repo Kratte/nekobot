@@ -19,6 +19,10 @@ export function getWikiItem(value) {
 export function getSafeness(value) {
   return Safeness.find((el) => el.value === value);
 }
+
+export function getNekosCategories(value) {
+  return NekosCategories.find((el) => el.value === value);
+}
 // fake profile data for game
 export const fakePlayerProfiles = [
   {
@@ -155,20 +159,109 @@ export const fakeGameItems = [
 export const Safeness = [
   {
     name: `suggestive`,
-    value: 'item_feather',
-    emoji: ':feather:',
-    description: 'A rare and magical feather, said to bring good luck to those who possess it'
+    value: 'suggestive'
   },
   {
     name: 'borderline',
-    value: 'item_orb',
-    emoji: ':crystal_ball:',
-    description: 'A mysterious orb that guides players towards their next quest'
+    value: 'suggestive'
   },
   {
     name: 'explicit',
-    value: 'item_tonic',
-    emoji: ':teapot:',
-    description: 'A healing tonic that restores health and provides a brief speed boost to the player\'s character'
+    value: 'explicit'
   },
+];
+export const NekosCategories = [
+  { name: 'neko', value: 'neko' },
+  { name: 'waifu', value: 'waifu' },
+  { name: 'husbando', value: 'husbando' },
+  { name: 'kitsune', value: 'kitsune' },
+  { name: 'lurk', value: 'lurk' },
+  { name: 'shoot', value: 'shoot' },
+  { name: 'sleep', value: 'sleep' },
+  { name: 'shrug', value: 'shrug' },
+  { name: 'stare', value: 'stare' },
+  { name: 'wave', value: 'wave' },
+  { name: 'poke', value: 'poke' },
+  { name: 'smile', value: 'smile' },
+  { name: 'peck', value: 'peck' },
+  { name: 'wink', value: 'wink' },
+  { name: 'blush', value: 'blush' },
+  { name: 'smug', value: 'smug' },
+  { name: 'tickle', value: 'tickle' },
+  { name: 'yeet', value: 'yeet' },
+  { name: 'think', value: 'think' },
+  { name: 'highfive', value: 'highfive' },
+  { name: 'feed', value: 'feed' },
+  { name: 'bite', value: 'bite' },
+  { name: 'bored', value: 'bored' },
+  { name: 'nom', value: 'nom' },
+  { name: 'yawn', value: 'yawn' },
+  { name: 'facepalm', value: 'facepalm' },
+  { name: 'cuddle', value: 'cuddle' },
+  { name: 'kick', value: 'kick' },
+  { name: 'happy', value: 'happy' },
+  { name: 'hug', value: 'hug' },
+  { name: 'baka', value: 'baka' },
+  { name: 'pat', value: 'pat' },
+  { name: 'nod', value: 'nod' },
+  { name: 'nope', value: 'nope' },
+  { name: 'kiss', value: 'kiss' },
+  { name: 'dance', value: 'dance' },
+  { name: 'punch', value: 'punch' },
+  { name: 'handshake', value: 'handshake' },
+  { name: 'slap', value: 'slap' },
+  { name: 'cry', value: 'cry' },
+  { name: 'pout', value: 'pout' },
+  { name: 'handhold', value: 'handhold' },
+  { name: 'thumbsup', value: 'thumbsup' },
+  { name: 'laugh', value: 'laugh' }
+];
+export const NekosCategories1 = [
+  { name: 'neko', value: 'neko' },
+  { name: 'waifu', value: 'waifu' },
+  { name: 'husbando', value: 'husbando' },
+  { name: 'kitsune', value: 'kitsune' },
+  { name: 'lurk', value: 'lurk' },
+  { name: 'shoot', value: 'shoot' },
+  { name: 'sleep', value: 'sleep' },
+  { name: 'shrug', value: 'shrug' },
+  { name: 'stare', value: 'stare' },
+  { name: 'wave', value: 'wave' },
+  { name: 'poke', value: 'poke' },
+  { name: 'smile', value: 'smile' },
+  { name: 'peck', value: 'peck' },
+  { name: 'wink', value: 'wink' },
+  { name: 'blush', value: 'blush' },
+  { name: 'smug', value: 'smug' },
+  { name: 'tickle', value: 'tickle' },
+  { name: 'yeet', value: 'yeet' },
+  { name: 'think', value: 'think' },
+  { name: 'highfive', value: 'highfive' },
+  { name: 'feed', value: 'feed' },
+  { name: 'bite', value: 'bite' },
+  { name: 'bored', value: 'bored' },
+  { name: 'nom', value: 'nom' },
+  { name: 'yawn', value: 'yawn' },
+];
+
+export const NekosCategories2 = [
+  { name: 'facepalm', value: 'facepalm' },
+  { name: 'cuddle', value: 'cuddle' },
+  { name: 'kick', value: 'kick' },
+  { name: 'happy', value: 'happy' },
+  { name: 'hug', value: 'hug' },
+  { name: 'baka', value: 'baka' },
+  { name: 'pat', value: 'pat' },
+  { name: 'nod', value: 'nod' },
+  { name: 'nope', value: 'nope' },
+  { name: 'kiss', value: 'kiss' },
+  { name: 'dance', value: 'dance' },
+  { name: 'punch', value: 'punch' },
+  { name: 'handshake', value: 'handshake' },
+  { name: 'slap', value: 'slap' },
+  { name: 'cry', value: 'cry' },
+  { name: 'pout', value: 'pout' },
+  { name: 'handhold', value: 'handhold' },
+  { name: 'thumbsup', value: 'thumbsup' },
+  { name: 'laugh', value: 'laugh' }
 ];

@@ -2,11 +2,11 @@ import 'dotenv/config';
 import express from 'express';
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
 import {
-  VerifyDiscordRequest,
-  getServerLeaderboard,
-  createPlayerEmbed, createCatEmbed, createNekoEmbed, createCatAdvancedEmbed, createCapyEmbed,
+    VerifyDiscordRequest,
+    getServerLeaderboard,
+    createPlayerEmbed, createCatEmbed, createNekoEmbed, createCatAdvancedEmbed, createCapyEmbed, createNekosEmbed,
 } from './utils.js';
-import {getFakeProfile, getSafeness, getWikiItem} from './game.js';
+import {getFakeProfile, getNekosCategories, getSafeness, getWikiItem} from './game.js';
 import { NekosAPI } from 'nekosapi';
 const nekos = new NekosAPI();
 
@@ -225,6 +225,34 @@ app.post('/interactions', async function (req, res) {
             console.error('Error:', error);
           });
     }
+
+
+      if (name === 'nekos' || name === 'nekos2') {
+          const option = data.options[0];
+          const selectedItem = getNekosCategories(option.value);
+          fetch("https://nekos.best/api/v2/"+ selectedItem.name)
+              .then(response => {
+                  if (!response.ok) {
+                      throw new Error('Network response was not ok ' + "https://nekos.best/api/v2/" + selectedItem.name);
+                  }
+                  return response.json();
+              })
+              .then(data => {
+                  const nekosEmbed = createNekosEmbed(data);
+                  console.log(data);
+                  return res.send({
+                      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                      data: {
+                          embeds: [nekosEmbed]
+                      },
+                  });
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+              });
+          // Send a message into the channel where command was triggered from
+
+      }
 
     // Send a message into the channel where command was triggered from
 
